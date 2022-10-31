@@ -7,6 +7,7 @@ export class userInterface {
     
   }
 
+
 /**
  * Starting page for the console interface.
  */
@@ -30,6 +31,63 @@ export class userInterface {
     }
   }
 
+  /**
+   * the code to english page.
+   */
+  codeToEnglishpage() {
+    console.log('')
+    console.log('What codelanguage would you like to translate from?')
+    console.log('(1) Morse')
+    console.log('(2) Binary')
+    console.log('(3) Caesarcipher (Rotation 13)')
+    console.log('(0) Return to startpage')
+
+    const prompt = promptSync()
+    const selection = prompt('Your selection: ')
+
+    if (selection === '1') {
+      this.fromMorse()
+      this.keepTranslatingCode()
+    } else if (selection === '2') {
+      this.fromBinary()
+      this.keepTranslatingCode()
+    } else if (selection === '3') {
+      this.fromCaesar()
+      this.keepTranslatingCode()
+    } else if (selection === '0') {
+      this.startingPage()
+    }
+  }
+
+  fromMorse() {
+    console.log('')
+    console.log('To translate from morse use symbols . or - ')
+    console.log('the program uses spaces to seperate letters')
+    console.log('hence write .- -... -.-.')
+
+    const prompt = promptSync()
+    const morseText = prompt('Your text: ')
+
+    const translator = new Translator() 
+    translator.morseToEnglish(morseText)
+  }
+
+  fromBinary() {
+    console.log('')
+    console.log('To translate from morse use 0 or 1 ')
+    console.log('the program uses spaces to seperate letters')
+    console.log('hence write 01000001 01000010 01000011')
+
+    const prompt = promptSync()
+    const binaryText = prompt('Your text: ')
+
+    const translator = new Translator() 
+    console.log(translator.binaryToEnglish(binaryText))
+  }
+
+  /**
+   * prompt asking what to translate into code.
+   */
   stringToTranslate() {
     console.log('')
     console.log('Please write what you would like to translate in the terminal')
@@ -37,9 +95,14 @@ export class userInterface {
     const prompt = promptSync()
     const stringToTranslate = prompt('Your text: ')
 
-    this.englishToCodePage(stringToTranslate)
+    console.log(this.englishToCodePage(stringToTranslate))
   }
 
+  /**
+   * The page for translating into codelanguages.
+   *
+   * @param {String} stringToTranslate 
+   */
   englishToCodePage(stringToTranslate) {
     console.log('')
     console.log('What codelanguage would you like to translate to?')
@@ -53,20 +116,39 @@ export class userInterface {
 
     if (selection === '1') {
       this.toMorse(stringToTranslate)
-      this.keepTranslating(stringToTranslate)
+      this.keepTranslatingEnglish(stringToTranslate)
     } else if (selection === '2') {
       this.toBinary(stringToTranslate)
-      this.keepTranslating(stringToTranslate)
+      this.keepTranslatingEnglish(stringToTranslate)
     } else if (selection === '3') {
       this.toCaesar(stringToTranslate)
-      this.keepTranslating(stringToTranslate)
+      this.keepTranslatingEnglish(stringToTranslate)
     } else if (selection === '0') {
       this.startingPage()
     }
     
   }
 
-  keepTranslating(stringToTranslate) {
+  keepTranslatingCode() {
+    console.log('')
+    console.log('Would you like to keep translating?')
+
+    const prompt = promptSync()
+    const selection = prompt('y/n?: ')
+
+    if (selection === 'y') {
+      this.codeToEnglishpage()
+    } else {
+      this.startingPage()
+    }
+  }
+
+  /**
+   * Prompt asking if you want to keep translating.
+   *
+   * @param {String} stringToTranslate 
+   */
+  keepTranslatingEnglish(stringToTranslate) {
     console.log('')
     console.log('Would you like to keep translating?')
 
@@ -80,32 +162,38 @@ export class userInterface {
     }
   }
 
+  /**
+   * Method for translating the string into morse.
+   *
+   * @param {String} stringToTranslate 
+   */
   toMorse(stringToTranslate) {
     const translator = new Translator()
 
     console.log(translator.englishToMorse(stringToTranslate))
   }
 
+  /**
+   * Method for translating the string into binary.
+   *
+   * @param {String} stringToTranslate 
+   */
   toBinary(stringToTranslate) {
     const translator = new Translator()
 
     console.log(translator.englishToBinary(stringToTranslate))
   }
 
+  /**
+   * Method for translating the string into caesarciper.
+   *
+   * @param {String} stringToTranslate 
+   */
   toCaesar(stringToTranslate) {
     const translator = new Translator()
 
     console.log(translator.englishToCaesar13(stringToTranslate))
   }
 
-  codeToEnglishpage() {
-    console.log('What codelanguage would you like to translate from?')
-    console.log('(1) Morse')
-    console.log('(2) Binary')
-    console.log('(3) Caesarcipher (Rotation 13)')
-    console.log('(0) Return to startpage')
-
-    const prompt = promptSync()
-    const selection = prompt('Your selection: ')
-  }
+  
 }
