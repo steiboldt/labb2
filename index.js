@@ -10,7 +10,13 @@ const ui = new userInterface()
 const asdf = prompt('what is your name: ')
 
 console.log(`HEJ DÄR ${asdf}`) */
-ui.startingPage()
+try {
+  ui.startApp()
+} catch (exception) {
+  console.log(exception)
+  ui.startApp()
+}
+
 
 
 
