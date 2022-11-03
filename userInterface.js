@@ -194,7 +194,7 @@ startApp() {
     if (selection === 'y') {
       this.runCodeToEnglishPage()
     } else {
-      this.startApp()
+      return
     }
   }
 
