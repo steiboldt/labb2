@@ -94,7 +94,7 @@ startApp() {
     const morseText = prompt('Your text: ')
 
     const translator = new Translator() 
-    translator.morseToEnglish(morseText)
+    console.log(translator.morseToEnglish(morseText))
   }
 
   /**
@@ -154,7 +154,7 @@ startApp() {
     console.log('(2) Binary')
     console.log('(3) Caesarcipher (Rotation 13)')
     console.log('(0) Return to startpage')
-    
+
     this.englishToCodeNav(stringToTranslate)
     
 
@@ -213,7 +213,7 @@ startApp() {
     if (selection === 'y') {
       this.englishToCodePage(stringToTranslate)
     } else {
-      this.startingPage()
+      return
     }
   }
 
