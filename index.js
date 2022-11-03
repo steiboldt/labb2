@@ -5,11 +5,7 @@ import { userInterface } from "./userInterface.js";
 const translator = new Translator()
 const ui = new userInterface()
 
-/* const prompt = promptSync()
 
-const asdf = prompt('what is your name: ')
-
-console.log(`HEJ DÄR ${asdf}`) */
 try {
   ui.startApp()
 } catch (exception) {
