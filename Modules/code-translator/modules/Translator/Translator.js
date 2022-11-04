@@ -14,7 +14,136 @@ export class Translator {
     this.binaryAlphabet = ['01000001', '01000010', '01000011', '01000100', '01000101', '01000110', '01000111', '01001000', '01001001', '01001010', '01001011', '01001100', '01001101', '01001110', '01001111', '01010000', '01010001', '01010010', '01010011', '01010100', '01010101', '01010110', '01010111', '01011000', '01011001', '01011010', ' ']
   }
 
+  /**
+   * Method for translating from english to caesar cipher with a rotation of 13.
+   *
+   * @param {Array} stringArray the string to translate split up into an array.
+   * @returns String translated from english to Caesar cipher with a rotation of 13.
+   */
+  englishToCaesar13(stringArray) {
+    stringArray = this.validateText(stringArray)
+    let translatedString = ''
 
+
+    for (let i = 0; i < stringArray.length; i++) {
+      for (let j = 0; j < this.englishAlphabet.length; j++) {
+        if (this.englishAlphabet[j] === stringArray[i])  {
+          translatedString = translatedString + this.caesarCipher13[j] + ' '
+        }
+        
+      }
+      
+    }
+    return translatedString
+  }
+
+  /**
+   * 
+   * @param {Array} stringArray the string to translate split up into an array.
+   * @returns String translated from caesar cipher with a rotation of 13 to english.
+   */
+  caesar13ToEnglish(stringArray) {
+    stringArray = this.validateCode(stringArray)
+    let translatedString = ''
+
+    for (let i = 0; i < stringArray.length; i++) {
+      for (let j = 0; j < this.caesarCipher13.length; j++) {
+        if (this.caesarCipher13[j] === stringArray[i]) {
+          translatedString = translatedString + this.englishAlphabet[j]
+        }
+      }
+      
+    }
+    return translatedString
+  }
+  /**
+   * 
+   * @param {Array} stringArray the string to translate split up into an array.
+   * @returns String translated from binary to english
+   */
+  binaryToEnglish(stringArray) {
+    stringArray = this.validateCode(stringArray)
+    let translatedString = ''
+
+    for (let i = 0; i < stringArray.length; i++) {
+      for (let j = 0; j < this.binaryAlphabet.length; j++) {
+        if (this.binaryAlphabet[j] === stringArray[i]) {
+          translatedString = translatedString + this.englishAlphabet[j]
+        }
+      }
+      
+    }
+    return translatedString
+  }
+
+
+  /**
+   * Method for translating text to binary. 
+   *
+   * @param {Array} stringArray the string to translate split up into an array.
+   * @returns string translated into binary code. 
+   */
+  englishToBinary(stringArray) {
+    stringArray = this.validateText(stringArray)
+    let translatedString = ''
+
+    for (let i = 0; i < stringArray.length; i++) {
+      for (let j = 0; j < this.englishAlphabet.length; j++) {
+        if (this.englishAlphabet[j] === stringArray[i])  {
+          translatedString = translatedString + this.binaryAlphabet[j] + ' '
+        }
+        
+      }
+      
+    }
+    return translatedString
+  }
+
+
+  /**
+   * Method for translating a string (a-z) into morsecode.
+   * 
+   * @param {Array} stringArray the string to translate split up into an array.
+   * @returns String translated into morsecode.
+   */
+  englishToMorse(stringArray) {
+    stringArray = this.validateText(stringArray)
+    let translatedString = ''
+
+
+    for (let i = 0; i < stringArray.length; i++) {
+      for (let j = 0; j < this.englishAlphabet.length; j++) {
+        if (this.englishAlphabet[j] === stringArray[i])  {
+          translatedString = translatedString + this.morseAlphabet[j] + ' '
+        }
+        
+      }
+      
+    }
+    return translatedString
+  }
+
+  /**
+   * Method for translating morse into english. 
+   *
+   * @param {Array} stringArray the string to translate split up into an array.
+   * @returns String translated into english from morsecode.
+   */
+  morseToEnglish(stringArray) {
+    stringArray = this.validateCode(stringArray)
+    let translatedString = ''
+
+    for (let i = 0; i < stringArray.length; i++) {
+      for (let j = 0; j < this.morseAlphabet.length; j++) {
+        if (this.morseAlphabet[j] === stringArray[i]) {
+          translatedString = translatedString + this.englishAlphabet[j]
+        }
+      }
+      
+    }
+    return translatedString
+  }
+  
   /**
    * Checks if there are other characters than the ones in the code-alphabets.
    *
@@ -51,136 +180,5 @@ export class Translator {
       }
     })
     return stringArray
-  }
-
-  /**
-   * Method for translating from english to caesar cipher with a rotation of 13.
-   *
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns String translated from english to Caesar cipher with a rotation of 13.
-   */
-  englishToCaesar13(stringArray) {
-    stringArray = this.validateText(stringArray)
-    let answer = ''
-
-
-    for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.englishAlphabet.length; j++) {
-        if (this.englishAlphabet[j] === stringArray[i])  {
-          answer = answer + this.caesarCipher13[j] + ' '
-        }
-        
-      }
-      
-    }
-    return answer
-  }
-
-  /**
-   * 
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns String translated from caesar cipher with a rotation of 13 to english.
-   */
-  caesar13ToEnglish(stringArray) {
-    stringArray = this.validateCode(stringArray)
-    let answer = ''
-
-    for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.caesarCipher13.length; j++) {
-        if (this.caesarCipher13[j] === stringArray[i]) {
-          answer = answer + this.englishAlphabet[j]
-        }
-      }
-      
-    }
-    return answer
-  }
-  /**
-   * 
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns String translated from binary to english
-   */
-  binaryToEnglish(stringArray) {
-    stringArray = this.validateCode(stringArray)
-    let answer = ''
-
-    for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.binaryAlphabet.length; j++) {
-        if (this.binaryAlphabet[j] === stringArray[i]) {
-          answer = answer + this.englishAlphabet[j]
-        }
-      }
-      
-    }
-    return answer
-  }
-
-
-  /**
-   * Method for translating text to binary. 
-   *
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns string translated into binary code. 
-   */
-  englishToBinary(stringArray) {
-    stringArray = this.validateText(stringArray)
-    let answer = ''
-
-    for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.englishAlphabet.length; j++) {
-        if (this.englishAlphabet[j] === stringArray[i])  {
-          answer = answer + this.binaryAlphabet[j] + ' '
-        }
-        
-      }
-      
-    }
-    return answer
-  }
-
-
-  /**
-   * Method for translating a string (a-z) into morsecode.
-   * 
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns String translated into morsecode.
-   */
-  englishToMorse(stringArray) {
-    stringArray = this.validateText(stringArray)
-    let answer = ''
-
-
-    for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.englishAlphabet.length; j++) {
-        if (this.englishAlphabet[j] === stringArray[i])  {
-          answer = answer + this.morseAlphabet[j] + ' '
-        }
-        
-      }
-      
-    }
-    return answer
-  }
-
-
-  /**
-   * Method for translating morse into english. 
-   *
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns String translated into english from morsecode.
-   */
-  morseToEnglish(stringArray) {
-    stringArray = this.validateCode(stringArray)
-    let answer = ''
-
-    for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.morseAlphabet.length; j++) {
-        if (this.morseAlphabet[j] === stringArray[i]) {
-          answer = answer + this.englishAlphabet[j]
-        }
-      }
-      
-    }
-    return answer
   }
 }
