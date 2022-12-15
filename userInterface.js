@@ -225,7 +225,7 @@ startApp() {
   toMorse(stringToTranslate) {
     const translator = new Translator()
 
-    console.log(translator.englishToMorse(stringToTranslate))
+    console.log(translator.translateToCode(stringToTranslate, 'morse'))
   }
 
   /**
@@ -236,7 +236,7 @@ startApp() {
   toBinary(stringToTranslate) {
     const translator = new Translator()
 
-    console.log(translator.englishToBinary(stringToTranslate))
+    console.log(translator.translateToCode(stringToTranslate, 'binary'))
   }
 
   /**
@@ -247,7 +247,7 @@ startApp() {
   toCaesar(stringToTranslate) {
     const translator = new Translator()
 
-    console.log(translator.englishToCaesar13(stringToTranslate))
+    console.log(translator.translateToCode(stringToTranslate, 'caesar'))
   }
 
   
