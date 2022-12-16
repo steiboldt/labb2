@@ -15,6 +15,14 @@ export class Translator {
   }
 
 
+  /**
+   * Method for translating from english to codelanguages
+   * caesar, binary, caesarcipher13.
+   *
+   * @param {Array} stringArray - the submitted string as an array.
+   * @param {String} chosenLanguage - the selected language to translate to.
+   * @returns - the translated string.
+   */
   translateToCode(stringArray, chosenLanguage) {
     stringArray = this.validateText(stringArray)
     let translatedString = ''
@@ -32,74 +40,40 @@ export class Translator {
         if (this.englishAlphabet[j] === stringArray[i])  {
           translatedString = translatedString + chosenLanguage[j] + ' '
         }
-        
       }
-      
-    }
-    return translatedString
-  }
-
-
-  /**
-   * 
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns String translated from caesar cipher with a rotation of 13 to english.
-   */
-  caesar13ToEnglish(stringArray) {
-    stringArray = this.validateCode(stringArray)
-    let translatedString = ''
-
-    for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.caesarCipher13.length; j++) {
-        if (this.caesarCipher13[j] === stringArray[i]) {
-          translatedString = translatedString + this.englishAlphabet[j]
-        }
-      }
-      
-    }
-    return translatedString
-  }
-  /**
-   * 
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns String translated from binary to english
-   */
-  binaryToEnglish(stringArray) {
-    stringArray = this.validateCode(stringArray)
-    let translatedString = ''
-
-    for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.binaryAlphabet.length; j++) {
-        if (this.binaryAlphabet[j] === stringArray[i]) {
-          translatedString = translatedString + this.englishAlphabet[j]
-        }
-      }
-      
     }
     return translatedString
   }
 
   /**
-   * Method for translating morse into english. 
+   * Method for translating from codelanguages into english.
    *
-   * @param {Array} stringArray the string to translate split up into an array.
-   * @returns String translated into english from morsecode.
+   * @param {Array} stringArray - the submitted string as an array.
+   * @param {String} chosenLanguage - the selected language to translate to.
+   * @returns the translated string.
    */
-  morseToEnglish(stringArray) {
+  translateFromCode(stringArray, chosenLanguage) {
     stringArray = this.validateCode(stringArray)
     let translatedString = ''
 
+    if (chosenLanguage === 'morse') {
+      chosenLanguage = this.morseAlphabet
+    } else if (chosenLanguage ==='binary') {
+      chosenLanguage = this.binaryAlphabet
+    } else if (chosenLanguage === 'caesar') {
+      chosenLanguage = this.caesarCipher13
+    }
+
     for (let i = 0; i < stringArray.length; i++) {
-      for (let j = 0; j < this.morseAlphabet.length; j++) {
-        if (this.morseAlphabet[j] === stringArray[i]) {
+      for (let j = 0; j < chosenLanguage.length; j++) {
+        if(chosenLanguage[j] === stringArray[i])  {
           translatedString = translatedString + this.englishAlphabet[j]
         }
       }
-      
     }
     return translatedString
   }
-  
+
   /**
    * Checks if there are other characters than the ones in the code-alphabets.
    *
