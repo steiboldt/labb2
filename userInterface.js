@@ -127,7 +127,7 @@ startApp() {
   fromCaesar() {
     console.log('')
     console.log('To translate from Caesarcipher use A-Z.')
-    console.log('Seperate letters using spaces')
+    console.log('Use capital letters and seperate letters using spaces')
    
 
     const prompt = promptSync()
