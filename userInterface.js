@@ -26,14 +26,18 @@ startApp() {
   startingPageNav() {
     const prompt = promptSync()
     const selection = prompt('Your selection: ')
+    const validSelection = ['1', '2', '0']
+    
 
-    if (selection === '1') {
-      this.stringToTranslate()
-    } else if (selection === '2') {
-        this.runCodeToEnglishPage()
-    } else if (selection === '0') {
-      return
-    } else if (selection !== '1' || '2'  || '0') {
+    if (validSelection.includes(selection) === true) {
+      if (selection === '1') {
+        this.stringToTranslate()
+      } else if (selection === '2') {
+          this.runCodeToEnglishPage()
+      } else if (selection === '0') {
+        return
+      } 
+    } else {
       throw new Exception('Error: Invalid input')
     }
   }
@@ -64,21 +68,25 @@ startApp() {
   codeToEnglishPageNav() {
     const prompt = promptSync()
     const selection = prompt('Your selection: ')
+    const validSelection = ['1', '2', '3', '0']
 
-    if (selection === '1') {
-      this.fromMorse()
-      this.keepTranslatingCode()
-    } else if (selection === '2') {
-      this.fromBinary()
-      this.keepTranslatingCode()
-    } else if (selection === '3') {
-      this.fromCaesar()
-      this.keepTranslatingCode()
-    } else if (selection === '0') {
-      this.startingPage()
-    } else if (selection !== '1' || '2' || '3' || '0') {
+    if (validSelection.includes(selection) === true) {
+      if (selection === '1') {
+        this.fromMorse()
+        this.keepTranslatingCode()
+      } else if (selection === '2') {
+        this.fromBinary()
+        this.keepTranslatingCode()
+      } else if (selection === '3') {
+        this.fromCaesar()
+        this.keepTranslatingCode()
+      } else if (selection === '0') {
+        this.startingPage()
+    }
+    } else {
       throw new Error('Error: Invalid input')
     }
+
   }
 
   /**
@@ -94,7 +102,7 @@ startApp() {
     const morseText = prompt('Your text: ')
 
     const translator = new Translator() 
-    console.log(translator.morseToEnglish(morseText))
+    console.log(translator.translateFromCode(morseText, 'morse'))
   }
 
   /**
@@ -110,7 +118,7 @@ startApp() {
     const binaryText = prompt('Your text: ')
 
     const translator = new Translator() 
-    console.log(translator.binaryToEnglish(binaryText))
+    console.log(translator.translateFromCode(binaryText, 'binary'))
   }
 
   /**
@@ -118,14 +126,15 @@ startApp() {
    */
   fromCaesar() {
     console.log('')
-    console.log('To translate from Caesarcipher use A-Z ')
+    console.log('To translate from Caesarcipher use A-Z.')
+    console.log('Seperate letters using spaces')
    
 
     const prompt = promptSync()
     const caesarText = prompt('Your text: ')
 
     const translator = new Translator() 
-    console.log(translator.englishToCaesar13(caesarText))
+    console.log(translator.translateFromCode(caesarText, 'caesar'))
   }
 
   /**
@@ -164,19 +173,22 @@ startApp() {
   englishToCodeNav(stringToTranslate) {
     const prompt = promptSync()
     const selection = prompt('Your selection: ')
+    const validSelection = ['1', '2', '3', '0']
 
-    if (selection === '1') {
-      this.toMorse(stringToTranslate)
-      this.keepTranslatingEnglish(stringToTranslate)
-    } else if (selection === '2') {
-      this.toBinary(stringToTranslate)
-      this.keepTranslatingEnglish(stringToTranslate)
-    } else if (selection === '3') {
-      this.toCaesar(stringToTranslate)
-      this.keepTranslatingEnglish(stringToTranslate)
-    } else if (selection === '0') {
-      this.startingPage()
-    } else if (selection !== '1' || '2' || '3' || '0') {
+    if (validSelection.includes(selection) === true) {
+      if (selection === '1') {
+        this.toMorse(stringToTranslate)
+        this.keepTranslatingEnglish(stringToTranslate)
+      } else if (selection === '2') {
+        this.toBinary(stringToTranslate)
+        this.keepTranslatingEnglish(stringToTranslate)
+      } else if (selection === '3') {
+        this.toCaesar(stringToTranslate)
+        this.keepTranslatingEnglish(stringToTranslate)
+      } else if (selection === '0') {
+        this.startingPage()
+      }
+    } else {
       throw new Error('Error: Invalid input')
     }
   }
