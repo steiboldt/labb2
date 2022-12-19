@@ -26,15 +26,18 @@ startApp() {
   startingPageNav() {
     const prompt = promptSync()
     const selection = prompt('Your selection: ')
+    const navSelection1 = '1'
+    const navSelection2 = '2'
+    const navSelection0 = '0'
     const validSelection = ['1', '2', '0']
     
 
     if (validSelection.includes(selection) === true) {
-      if (selection === '1') {
+      if (selection === navSelection1) {
         this.stringToTranslate()
-      } else if (selection === '2') {
+      } else if (selection === navSelection2) {
           this.runCodeToEnglishPage()
-      } else if (selection === '0') {
+      } else if (selection === navSelection0) {
         return
       } 
     } else {
@@ -68,19 +71,23 @@ startApp() {
   codeToEnglishPageNav() {
     const prompt = promptSync()
     const selection = prompt('Your selection: ')
+    const navSelection1 = '1'
+    const navSelection2 = '2'
+    const navSelection3 = '3'
+    const navSelection0 = '0'
     const validSelection = ['1', '2', '3', '0']
 
     if (validSelection.includes(selection) === true) {
-      if (selection === '1') {
+      if (selection === navSelection1) {
         this.fromMorse()
         this.keepTranslatingCode()
-      } else if (selection === '2') {
+      } else if (selection === navSelection2 ) {
         this.fromBinary()
         this.keepTranslatingCode()
-      } else if (selection === '3') {
+      } else if (selection === navSelection3) {
         this.fromCaesar()
         this.keepTranslatingCode()
-      } else if (selection === '0') {
+      } else if (selection === navSelection0) {
         this.startingPage()
     }
     } else {
@@ -173,19 +180,23 @@ startApp() {
   englishToCodeNav(stringToTranslate) {
     const prompt = promptSync()
     const selection = prompt('Your selection: ')
+    const navSelection1 = '1'
+    const navSelection2 = '2'
+    const navSelection3 = '3'
+    const navSelection0 = '0'
     const validSelection = ['1', '2', '3', '0']
 
     if (validSelection.includes(selection) === true) {
-      if (selection === '1') {
+      if (selection === navSelection1 ) {
         this.toMorse(stringToTranslate)
         this.keepTranslatingEnglish(stringToTranslate)
-      } else if (selection === '2') {
+      } else if (selection === navSelection2) {
         this.toBinary(stringToTranslate)
         this.keepTranslatingEnglish(stringToTranslate)
-      } else if (selection === '3') {
+      } else if (selection === navSelection3) {
         this.toCaesar(stringToTranslate)
         this.keepTranslatingEnglish(stringToTranslate)
-      } else if (selection === '0') {
+      } else if (selection === navSelection0) {
         this.startingPage()
       }
     } else {
@@ -199,11 +210,12 @@ startApp() {
   keepTranslatingCode() {
     console.log('')
     console.log('Would you like to keep translating?')
-
+    
     const prompt = promptSync()
     const selection = prompt('y/n?: ')
+    const keepTranslatingYes = 'y'
 
-    if (selection === 'y') {
+    if (selection === keepTranslatingYes) {
       this.runCodeToEnglishPage()
     } else {
       return
@@ -221,8 +233,9 @@ startApp() {
 
     const prompt = promptSync()
     const selection = prompt('y/n?: ')
+    const keepTranslatingYes = 'y'
 
-    if (selection === 'y') {
+    if (selection === keepTranslatingYes) {
       this.englishToCodePage(stringToTranslate)
     } else {
       return
